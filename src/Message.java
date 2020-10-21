@@ -29,4 +29,5 @@ public class Message implements Serializable {
     public String getData() {
         return data;
     }
+
 }

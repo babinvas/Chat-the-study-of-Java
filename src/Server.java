@@ -62,8 +62,14 @@ public class Server {
         }
     }
 
+
+    /**
+
+     * Класс Handler реализовывает протокол общения с клиентом (происходит обмен сообщениями с клиентом).
+
+     */
+
     private static class Handler extends Thread {
-        // Класс Handler реализовывает протокол общения с клиентом (происходит обмен сообщениями с клиентом).
         private Socket socket;
 
         public Handler(Socket socket) {

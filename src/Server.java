@@ -174,6 +174,7 @@ public class Server {
                 // Если принятое сообщение - это текст (тип TEXT),
                 // то формируется новое текстовое сообщение по форме и отправляется всем клиентам методом sendBroadcastMessage.
                 // Если принятое сообщение не является текстом, выводится сообщение об ошибке.
+
                 if (message.getType() == MessageType.TEXT) {
                     String messageText = userName + ": " + message.getData();
                     message = new Message(MessageType.TEXT, messageText);

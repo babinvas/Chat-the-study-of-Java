@@ -155,6 +155,7 @@ public class Server {
         // Метод отправки клиенту (новому участнику) информации об остальных клиентах (участниках) чата.
         private void notifyUsers(Connection connection, String userName) throws IOException {
             for (Map.Entry<String, Connection> member : connectionMap.entrySet()) {
+
                 String name = member.getKey();
 
                 if (!name.equals(userName)) {

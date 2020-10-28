@@ -76,6 +76,7 @@ public class Server {
             this.socket = socket;
         }
 
+        // Главный метод класса Handler
         public void run() {
             SocketAddress socketAddress = socket.getRemoteSocketAddress();
             ConsoleHelper.writeMessage("Установлено новое соединение с удаленным адресом: " + socketAddress);

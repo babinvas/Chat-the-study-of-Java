@@ -1,3 +1,5 @@
+package BabinVas.ChatTheStudyOfJava;
+
 /**
  JavaRush. Java Multithreading. Уровень 27. Лекция 15 (3008)
 

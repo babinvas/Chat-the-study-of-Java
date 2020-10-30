@@ -1,3 +1,5 @@
+package BabinVas.ChatTheStudyOfJava;
+
 import java.io.Serializable;
 
 /**

@@ -1,9 +1,9 @@
-package client;
+package BabinVas.ChatTheStudyOfJava.client;
 
-import Connection;
-import ConsoleHelper;
-import Message;
-import MessageType;
+import BabinVas.ChatTheStudyOfJava.Connection;
+import BabinVas.ChatTheStudyOfJava.ConsoleHelper;
+import BabinVas.ChatTheStudyOfJava.Message;
+import BabinVas.ChatTheStudyOfJava.MessageType;
 
 import java.io.IOException;
 

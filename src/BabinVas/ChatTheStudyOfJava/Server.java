@@ -1,3 +1,9 @@
+package BabinVas.ChatTheStudyOfJava;
+
+import BabinVas.ChatTheStudyOfJava.ConsoleHelper;
+import BabinVas.ChatTheStudyOfJava.Message;
+import BabinVas.ChatTheStudyOfJava.MessageType;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;

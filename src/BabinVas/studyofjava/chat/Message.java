@@ -1,4 +1,4 @@
-package BabinVas.ChatTheStudyOfJava;
+package BabinVas.studyofjava.chat;
 
 import java.io.Serializable;
 
@@ -31,5 +31,4 @@ public class Message implements Serializable {
     public String getData() {
         return data;
     }
-
 }

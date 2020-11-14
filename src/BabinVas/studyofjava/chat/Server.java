@@ -1,8 +1,4 @@
-package BabinVas.ChatTheStudyOfJava;
-
-import BabinVas.ChatTheStudyOfJava.ConsoleHelper;
-import BabinVas.ChatTheStudyOfJava.Message;
-import BabinVas.ChatTheStudyOfJava.MessageType;
+package BabinVas.studyofjava.chat;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -13,16 +9,27 @@ import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
- JavaRush. Java Multithreading. Уровень 27. Лекция 15 (3008)
-
+ * JavaRush. Java Multithreading. Уровень 27. Лекция 15 (3008)
+ * <p>
  * Чат (Chat)
-
+ * <p>
+ * Набор программ с помощью которого можно будет обмениваться текстовыми сообщения. Набор будет состоять из одного сервера и нескольких клиентов, по одному для каждого участника чата.
+ * <p>
+ * Классы:
+ * <p>
+ * Server - основной класс сервера.
+ * MessageType - enum, который отвечает за тип сообщений пересылаемых между клиентом и сервером.
+ * Message - класс, отвечающий за пересылаемые сообщения.
+ * Connection - класс соединения между клиентом и сервером.
+ * ConsoleHelper - вспомогательный класс, для чтения или записи в консоль.
+ * <p>
+ * <p>
  * Основной класс сервера.
-
- - Сервер создает серверное сокетное соединение.
- - В цикле ожидает, когда какой-то клиент подключится к сокету.
- - Создает новый поток обработчик Handler, в котором будет происходить обмен сообщениями с клиентом.
- - Ожидает следующее соединение.
+ * <p>
+ * - Сервер создает серверное сокетное соединение.
+ * - В цикле ожидает, когда какой-то клиент подключится к сокету.
+ * - Создает новый поток обработчик Handler, в котором будет происходить обмен сообщениями с клиентом.
+ * - Ожидает следующее соединение.
  */
 
 public class Server {
@@ -37,11 +44,11 @@ public class Server {
         // Создавать серверный сокет
         try {
             server = new ServerSocket(port);
-            System.out.println("Сервер запущен.");
+            ConsoleHelper.writeMessage("Сервер запущен.");
 
             while (true) {
-                //Слушает и принимает входящие сокетные соединения
-                //и создаваёт и запускает поток Handler, передавая в конструктор сокет
+                // Слушает и принимает входящие сокетные соединения
+                // и создаваёт и запускает поток Handler, передавая в конструктор сокет
                 Socket socket = server.accept();
                 Handler handler = new Handler(socket);
                 handler.start();
@@ -51,8 +58,7 @@ public class Server {
                 server.close();
             } catch (IOException f) {
             }
-
-            System.out.println(e);
+            ConsoleHelper.writeMessage(e.toString());
         }
     }
 
@@ -63,11 +69,10 @@ public class Server {
             try {
                 value.send(message);
             } catch (IOException e) {
-                System.out.println("Не смогли отправить сообщение.");
+                ConsoleHelper.writeMessage("Не смогли отправить сообщение.");
             }
         }
     }
-
 
     /**
 

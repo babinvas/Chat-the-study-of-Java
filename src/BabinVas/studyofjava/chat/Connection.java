@@ -1,4 +1,4 @@
-package BabinVas.ChatTheStudyOfJava;
+package BabinVas.studyofjava.chat;
 
 import java.io.Closeable;
 import java.io.IOException;

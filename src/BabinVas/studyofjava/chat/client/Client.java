@@ -1,9 +1,9 @@
-package BabinVas.ChatTheStudyOfJava.client;
+package BabinVas.studyofjava.chat.client;
 
-import BabinVas.ChatTheStudyOfJava.Connection;
-import BabinVas.ChatTheStudyOfJava.ConsoleHelper;
-import BabinVas.ChatTheStudyOfJava.Message;
-import BabinVas.ChatTheStudyOfJava.MessageType;
+import BabinVas.studyofjava.chat.Connection;
+import BabinVas.studyofjava.chat.ConsoleHelper;
+import BabinVas.studyofjava.chat.Message;
+import BabinVas.studyofjava.chat.MessageType;
 
 import java.io.IOException;
 
@@ -23,6 +23,48 @@ public class Client {
 
 	// Поле-флаг: true, если клиент подсоединен к серверу или в false в противном случае.
 	private volatile boolean clientConnected = false;
+
+	public static void main(String[] args) {
+		Client client = new Client();
+		client.run();
+	}
+
+	// Метод создаёт вспомогательный поток SocketThread, ожидает пока тот установит соединение с сервером,
+	// а после этого в цикле считывать сообщения с консоли и отправлять их серверу.
+	// Условием выхода из цикла будет отключение клиента или ввод пользователем команды 'exit'.
+	// Для информирования главного потока, что соединение установлено во вспомогательном потоке,
+	// используй методы wait() и notify() объекта класса Client.
+	public void run() {
+		SocketThread socketThread = getSocketThread();
+		socketThread.setDaemon(true);
+		socketThread.start();
+
+		synchronized (this) {
+			try {
+				this.wait();
+			} catch (InterruptedException e) {
+				ConsoleHelper.writeMessage("Возникло исключение! Выход из программы.");
+			}
+		}
+
+		if (clientConnected) {
+			ConsoleHelper.writeMessage("Соединение установлено.\n Для выхода наберите команду 'exit'.");
+		} else {
+			ConsoleHelper.writeMessage("Произошла ошибка во время работы клиента.");
+		}
+
+		while (clientConnected) {
+			String incomingMessage = ConsoleHelper.readString();
+
+			if (incomingMessage.equals("exit")) {
+				break;
+			}
+
+			if (shouldSendTextFromConsole()) {
+				sendTextMessage(incomingMessage);
+			}
+		}
+	}
 
 	// Метод заправшивает ввод адреса сервера у пользователя.
 	protected String getServerAddress() {
@@ -70,6 +112,8 @@ public class Client {
 	 Клас SocketThread отвечате за поток, устанавливающий сокетное соединение и читающий сообщения сервера.
 	 */
 	public class SocketThread extends Thread {
+		public void run() {
 
+		}
 	}
 }

@@ -117,26 +117,29 @@ public class Client {
 		}
 
 		// Метод выводить текст message в консоль.
-		void processIncomingMessage(String message) {
-
+		protected void processIncomingMessage(String message) {
+			ConsoleHelper.writeMessage(message);
 		}
 
 		// Метод выводить в консоль информацию о том,
 		// что участник с именем userName присоединился к чату.
-		void informAboutAddingNewUser(String userName) {
-
+		protected void informAboutAddingNewUser(String userName) {
+			ConsoleHelper.writeMessage("Участник с именем " + userName + " присоединился к чату.");
 		}
 
 		// Метод выводить в консоль, что участник с именем userName покинул чат.
-		void informAboutDeletingNewUser(String userName) {
-
+		protected void informAboutDeletingNewUser(String userName) {
+			ConsoleHelper.writeMessage("Участник с именем " + userName + " покинул чат");
 		}
 
 		// Метод:
 		// а) Устанавливает значение поля clientConnected внешнего объекта Client в соответствии с переданным параметром.
-		// б) Оповещакт (пробуждать ожидающий) основной поток класса Client.
-		void notifyConnectionStatusChanged(boolean clientConnected) {
-
+		// б) Оповещает (пробуждать ожидающий) основной поток класса Client.
+		protected void notifyConnectionStatusChanged(boolean clientConnected) {
+			synchronized (Client.this) {
+				Client.this.clientConnected = clientConnected;
+				Client.this.notify();
+			}
 		}
 	}
 }

@@ -116,18 +116,25 @@ public class Client {
 
 		}
 
+		// Метод выводить текст message в консоль.
 		void processIncomingMessage(String message) {
 
 		}
 
+		// Метод выводить в консоль информацию о том,
+		// что участник с именем userName присоединился к чату.
 		void informAboutAddingNewUser(String userName) {
 
 		}
 
+		// Метод выводить в консоль, что участник с именем userName покинул чат.
 		void informAboutDeletingNewUser(String userName) {
 
 		}
 
+		// Метод:
+		// а) Устанавливает значение поля clientConnected внешнего объекта Client в соответствии с переданным параметром.
+		// б) Оповещакт (пробуждать ожидающий) основной поток класса Client.
 		void notifyConnectionStatusChanged(boolean clientConnected) {
 
 		}

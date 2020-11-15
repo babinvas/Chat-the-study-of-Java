@@ -109,10 +109,26 @@ public class Client {
 	}
 
 	/**
-	 Клас SocketThread отвечате за поток, устанавливающий сокетное соединение и читающий сообщения сервера.
+	 * Клас SocketThread отвечате за поток, устанавливающий сокетное соединение и читающий сообщения сервера.
 	 */
 	public class SocketThread extends Thread {
 		public void run() {
+
+		}
+
+		void processIncomingMessage(String message) {
+
+		}
+
+		void informAboutAddingNewUser(String userName) {
+
+		}
+
+		void informAboutDeletingNewUser(String userName) {
+
+		}
+
+		void notifyConnectionStatusChanged(boolean clientConnected) {
 
 		}
 	}

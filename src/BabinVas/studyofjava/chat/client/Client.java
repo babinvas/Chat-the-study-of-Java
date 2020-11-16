@@ -109,11 +109,37 @@ public class Client {
 	}
 
 	/**
-	 Клас SocketThread отвечате за поток, устанавливающий сокетное соединение и читающий сообщения сервера.
+	 * Клас SocketThread отвечате за поток, устанавливающий сокетное соединение и читающий сообщения сервера.
 	 */
 	public class SocketThread extends Thread {
 		public void run() {
 
+		}
+
+		// Метод выводить текст message в консоль.
+		protected void processIncomingMessage(String message) {
+			ConsoleHelper.writeMessage(message);
+		}
+
+		// Метод выводить в консоль информацию о том,
+		// что участник с именем userName присоединился к чату.
+		protected void informAboutAddingNewUser(String userName) {
+			ConsoleHelper.writeMessage("Участник с именем " + userName + " присоединился к чату.");
+		}
+
+		// Метод выводить в консоль, что участник с именем userName покинул чат.
+		protected void informAboutDeletingNewUser(String userName) {
+			ConsoleHelper.writeMessage("Участник с именем " + userName + " покинул чат");
+		}
+
+		// Метод:
+		// а) Устанавливает значение поля clientConnected внешнего объекта Client в соответствии с переданным параметром.
+		// б) Оповещает (пробуждать ожидающий) основной поток класса Client.
+		protected void notifyConnectionStatusChanged(boolean clientConnected) {
+			synchronized (Client.this) {
+				Client.this.clientConnected = clientConnected;
+				Client.this.notify();
+			}
 		}
 	}
 }

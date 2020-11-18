@@ -142,7 +142,7 @@ public class Client {
 			}
 		}
 
-		// Представляет клиента серверу.
+    // Представляет клиента серверу.
 		protected void clientHandshake() throws IOException, ClassNotFoundException {
 			Message message = null;
 

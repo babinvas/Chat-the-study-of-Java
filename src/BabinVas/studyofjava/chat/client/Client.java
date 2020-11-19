@@ -6,6 +6,7 @@ import BabinVas.studyofjava.chat.Message;
 import BabinVas.studyofjava.chat.MessageType;
 
 import java.io.IOException;
+import java.net.Socket;
 
 /**
  Клиент, в начале своей работы, должен запросить у пользователя адрес
@@ -113,7 +114,17 @@ public class Client {
 	 */
 	public class SocketThread extends Thread {
 		public void run() {
-
+			String serverAddress = getServerAddress();
+			int serverPort = getServerPort();
+			Socket socket = null;
+			try {
+				socket = new Socket(serverAddress, serverPort);
+				connection = new Connection(socket);
+				clientHandshake();
+				clientMainLoop();
+			} catch (IOException | ClassNotFoundException e) {
+				notifyConnectionStatusChanged(false);
+			}
 		}
 
 		// Метод выводить текст message в консоль.
@@ -142,7 +153,7 @@ public class Client {
 			}
 		}
 
-    // Представляет клиента серверу.
+		// Представляет клиента серверу.
 		protected void clientHandshake() throws IOException, ClassNotFoundException {
 			Message message = null;
 

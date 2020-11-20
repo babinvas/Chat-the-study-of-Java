@@ -146,6 +146,7 @@ public class Client {
 		// Метод:
 		// а) Устанавливает значение поля clientConnected внешнего объекта Client в соответствии с переданным параметром.
 		// б) Оповещает (пробуждать ожидающий) основной поток класса Client.
+
 		protected void notifyConnectionStatusChanged(boolean clientConnected) {
 			synchronized (Client.this) {
 				Client.this.clientConnected = clientConnected;
